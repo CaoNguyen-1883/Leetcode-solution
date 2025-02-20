@@ -5,6 +5,8 @@
         "xstring": "cpp",
         "unordered_set": "cpp",
         "set": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "iostream": "cpp",
+        "utility": "cpp"
     }
 }
