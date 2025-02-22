@@ -8,6 +8,19 @@
         "cmath": "cpp",
         "iostream": "cpp",
         "utility": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "queue": "cpp",
+        "span": "cpp",
+        "xutility": "cpp",
+        "chrono": "cpp",
+        "format": "cpp",
+        "forward_list": "cpp",
+        "initializer_list": "cpp",
+        "ranges": "cpp",
+        "xhash": "cpp",
+        "xtree": "cpp"
     }
 }
