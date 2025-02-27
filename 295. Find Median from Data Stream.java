@@ -1,3 +1,19 @@
-public class 295. Find Median from Data Stream {
+
+import java.util.Queue;
+
+class MedianFinder {
+
+    private Queue<int> = new 
+
+    public MedianFinder() {
+        
+    }
     
+    public void addNum(int num) {
+        
+    }
+    
+    public double findMedian() {
+        
+    }
 }

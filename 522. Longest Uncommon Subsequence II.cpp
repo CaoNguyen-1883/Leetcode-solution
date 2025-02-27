@@ -9,8 +9,54 @@ public:
             return a.size() < b.size();
         });
 
-        for(string s : strs) cout << s << endl;
 
         return -1;
     }
+
+    bool isSubStr(string s, string sub){
+        return s.substr(0, sub.size()) == sub;
+    }
 };
+
+
+struct ListNode{
+    int val;
+    ListNode* next;
+};
+
+
+ListNode *reverseNode(ListNode* head){
+    ListNode* before = nullptr, * after = nullptr;
+    
+    while(head){
+        after = head->next;
+        head->next = before;
+        before = head;
+        head = after;
+    }
+    return before;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
