@@ -13,7 +13,7 @@ public:
                 backTrack(path, i + 1);
                 swap(path[i], path[index]);
             }
-        }-
+        }
     }
 
     vector<vector<int>> permute(vector<int>& nums) {

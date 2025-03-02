@@ -93,7 +93,7 @@ private:
         for(int num = 0; num < 9; ++num){
             if(!rows[i][num] && !cols[j][num] && !boxes[boxIndex][num]){
                 board[i][j] = num + '1';
-                rows[i][num] = cols[j][num] = boxes[boxIndex][num] = true;
+                rows[i][num] = cols[j][num] = boxes[boxIndex][num] = true; 
 
                 if(solve(board, emptyCells, rows, cols, boxes, index + 1)) return true;
 
