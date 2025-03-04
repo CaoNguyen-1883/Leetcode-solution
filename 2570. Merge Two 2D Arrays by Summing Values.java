@@ -31,7 +31,7 @@ class Solution {
 
         for(int l = 0; l < k; ++l){
             res[l] = arr[l];
-        }
+    }
 
         return res;
     }

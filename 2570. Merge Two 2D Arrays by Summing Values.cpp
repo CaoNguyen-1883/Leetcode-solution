@@ -63,6 +63,6 @@ public:
             ++j;
         }
         res.resize(k);
-        return res;
+        
     }
 };
