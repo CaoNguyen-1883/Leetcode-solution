@@ -15,6 +15,6 @@ class Solution {
             }
         }
 
-        return new String(str);
+        return String.copyValueOf(str);
     }
 }
