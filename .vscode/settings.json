@@ -21,6 +21,8 @@
         "initializer_list": "cpp",
         "ranges": "cpp",
         "xhash": "cpp",
-        "xtree": "cpp"
+        "xtree": "cpp",
+        "bitset": "cpp",
+        "stack": "cpp"
     }
 }
