@@ -3,33 +3,26 @@
 class Solution {
 public:
     string getPermutation(int n, int k) {
-        string s = "";
-        
-        for(int i = 0; i < n; ++i) s += i + '1';
-
         string res = "";
-        
-        solve(res, s, string(""), vector<bool>(n), k, 0);
+
+        vector<int> nums(n);
+        vector<int> fact(n + 1, 1);
+
+        iota(nums.begin(), nums.end(), 1);
+
+        for(int i = 2; i <= n; ++i) 
+            nums[i] = nums[i - 1] * i;
+        --k;    
+
+        for(int i = n - 1; i >= 0; --i){
+            const int j = k / fact[i];
+            k %= fact[i];
+            res += to_string(nums[j]);
+            nums.erase(nums.begin() + j);
+        }
+
 
         return res;
     }
-
-    void solve(string& res, string& s, string& path, vector<bool>& used, int k, int count){
-        if(path.size() == s.size()){
-            ++count;  
-            cout << count << endl;
-            if(count == k) {
-                res = path;
-            }
-            return;
-        }
-
-        for(int i = 0; i < s.size(); ++i){
-            if(used[i]) continue;
-            
-            path.push_back(s[i]);
-            solve(res, s, path, used, k, count);
-            path.pop_back();
-        }
-    }
+    
 };
