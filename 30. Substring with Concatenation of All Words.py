@@ -3,38 +3,35 @@ from collections import Counter
 class Solution:
     def findSubstring(self, s: str, words: List[str]) -> List[int]:
         if not s or not words:
-            return []
-        
+            return [    ]
         res = []
-        n = len(s)
-        m = len(words)
+        m = len(s)
+        n = len(words)
         k = len(words[0])
         count = Counter(words)
 
         for offset in range(k):
             seen = Counter()
-            l = offset
+            left = offset
             matched = 0
-
-            for r in range(offset, n - k + 1, k):
-                word = s[r: r + k]
-
+            for right in range(offset, m  - k + 1, k):
+                word = s[right: right + k]
                 if word in count:
                     seen[word] += 1
                     matched += 1
 
                     while(seen[word] > count[word]):
-                        leftWord = s[l: l + k]
+                        leftWord = s[left: left + k]
                         seen[leftWord] -= 1
                         matched -= 1
-                        l += k
+                        left += k
 
-                    if matched == m:
-                        res.append(l)
-
+                    if matched == n:
+                        res.append(left)
                 else:
-                    matched = 0
-                    l = r + k
                     seen.clear()
+                    matched = 0
+                    left = right + k
+        
 
         return res
