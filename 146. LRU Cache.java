@@ -1,111 +1,88 @@
 
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
 
 class LRUCache {
     class Node{
-        int key;
-        int value;
+        public int key;
+        public int value;
+        public Node prev;
+        public Node next;
 
-        Node prev;
-        Node next;
-
-        Node(int key, int value){
-            this.key= key;
-            this.value= value;
+        public Node(int key, int value){
+            this.key = key;
+            this.value = value;
+            this.prev = null;
+            this.next = null;
+        }
+        
+        public Node(int key, int value, Node head, Node tail){
+            this.key = key;
+            this.value = value;
+            this.prev = head;
+            this.next = tail;
         }
     }
-
-    public Node[] map;
-    public int count, capacity;
-    public Node head, tail;
     
+    private Node[] cache;
+    private Node head;
+    private Node tail;
+    private int capacity;
+    private int size;
+
     public LRUCache(int capacity) {
-        
-        this.capacity= capacity;
-        count= 0;
-        
-        map= new Node[10_000+1];
-        
-        head= new Node(0,0);
-        tail= new Node(0,0);
-        
-        head.next= tail;
-        tail.prev= head;
-        
-        head.prev= null;
-        tail.next= null;
+        this.capacity = capacity;
+        this.size =  0;
+        this.cache = new Node[10_000 + 1];
+        this.head = new Node(-1, -1);
+        this.tail = new Node(10001, 10001);
+        head.next = tail;
+        head.prev = null;
+        tail.prev = head;
+        tail.next = null;
     }
     
     public void deleteNode(Node node){
-        node.prev.next= node.next;
-        node.next.prev= node.prev;       
-        
-        return;
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
     }
     
     public void addToHead(Node node){
-        node.next= head.next;
-        node.next.prev= node;
-        node.prev= head;
-        
-        head.next= node;      
-        
-        return;
+        node.next = head.next;
+        node.next.prev = node;
+        node.prev = head;
+        head.next = node;
     }
     
     public int get(int key) {
-        
-        if( map[key] != null ){
-            
-            Node node= map[key];
-            
-            int nodeVal= node.value;
-            
-            deleteNode(node);
-            
-            addToHead(node);
-            
-            return nodeVal;
-        }
-        else
-            return -1;
+        if(cache[key] == null) return -1;
+        Node node = cache[key];
+        int res = node.value;
+        deleteNode(node);
+        addToHead(node);
+
+
+        return res;
     }
     
     public void put(int key, int value) {
-        
-        if(map[key] != null){
-            
-            Node node= map[key];
-            
-            node.value= value;
-            
+        if(cache[key] != null){
+            Node node = cache[key];
+            node.value = value;
             deleteNode(node);
-            
             addToHead(node);
-            
-        } else {
-            
-            Node node= new Node(key,value);
-            
-            map[key]= node;
-            
-            if(count < capacity){
-                count++;
+        } else{
+            Node node = new Node(key, value);
+            cache[key] = node;
+
+            if(size < capacity){
+                ++size;
                 addToHead(node);
-            } 
-            else {
-                
-                map[tail.prev.key]= null;
+            } else{
+                cache[tail.prev.key] = null;
                 deleteNode(tail.prev);
-                
                 addToHead(node);
             }
         }
-        
-        return;
+
     }
     
 }
