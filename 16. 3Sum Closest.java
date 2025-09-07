@@ -11,7 +11,7 @@ class Solution {
             int l = i + 1;
             int r = n - 1;
 
-            while(l < r){
+            while(l < r)
                 int sum = nums[i] + nums[l] + nums[r];
 
                 if(sum == target) return sum;
