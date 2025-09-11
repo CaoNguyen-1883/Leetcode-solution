@@ -4,9 +4,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//barfoothefoobarman
+//0        9
+//foobar    
+
+//wordgoodgoodgoodbestword
+//
+//"word","good","best","word"  
+
+//asbarfoofoobarthefoobarman
+//        8  11 14
+//"bar","foo","the"
 class Solution {
     public List<Integer> findSubstring(String s, String[] words) {
-        if(s.isEmpty() || words.length == 0) return new ArrayList<Integer>();
+       if(s.isEmpty() || words.length == 0) return new ArrayList<Integer>();
 
         List<Integer> res = new ArrayList<>();
         Map<String, Integer> count =  new HashMap<>();
