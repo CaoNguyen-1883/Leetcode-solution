@@ -12,40 +12,40 @@ import java.util.Map;
 //
 //"word","good","best","word"  
 
-//asbarfoofoobarthefoobarman
+//dasbarfoofoobarthefoobarman
 //        8  11 14
 //"bar","foo","the"
 class Solution {
     public List<Integer> findSubstring(String s, String[] words) {
-       if(s.isEmpty() || words.length == 0) return new ArrayList<Integer>();
-
+        if(s.isEmpty() || words.length == 0) return new ArrayList<>();
         List<Integer> res = new ArrayList<>();
-        Map<String, Integer> count =  new HashMap<>();
         int n = s.length();
         int m = words.length;
         int k = words[0].length();
 
+        Map<String, Integer> count = new HashMap<>();
+
         for(String word : words) count.put(word, count.getOrDefault(word, 0) + 1);
 
-        for(int offset = 0; offset < k; ++offset){
+        for(int offset = 0; offset < k; offset++){
             Map<String, Integer> seen = new HashMap<>();
             int matched = 0;
             int l = offset;
-
+            
             for(int r = offset; r <= n - k; r += k){
                 String word = s.substring(r, r + k);
                 if(count.containsKey(word)){
                     seen.put(word, seen.getOrDefault(word, 0) + 1);
-                    ++matched;
+                    matched++;
 
                     while(seen.get(word) > count.get(word)){
                         String leftWord = s.substring(l, l + k);
-                        seen.put(leftWord,  seen.get(leftWord) - 1);
-                        --matched;
+                        seen.put(leftWord, seen.get(leftWord) - 1);
+                        matched--;
                         l += k;
                     }
 
-                    if(matched == m){
+                    if(m == matched){
                         res.add(l);
                     }
                 } else{
@@ -54,7 +54,6 @@ class Solution {
                     l = r + k;
                 }
             }
-
         }
 
         return res;
