@@ -8,6 +8,8 @@ class Solution {
             if(nums[i] < nums[i + 1]) break;
         }
 
+        // 1 2 3 4 5 6 7 8 9
+
         // From back to front, find the first number > nums[i], swap it with
         // nums[i].
         if(i >= 0){
