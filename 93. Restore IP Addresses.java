@@ -9,14 +9,15 @@ class Solution {
   }
 
   public void dfs(String s, List<String> res, List<String> path, int start){
-    if(path.size() == 4 && start == s.length()){
+      if(start == s.length() && path.size() == 4){
         res.add(String.join(".", path));
-        return;       
-    }
-    
-    if(path.size() == 4 || start == s.length()) return;
+        return;
+      }
 
-    for(int length = 1; length <= 3; ++length){
+      if(start == s.length() || path.size() == 4) return;
+
+      for(int length = 1; length <= 3; length++){
+
         if(start + length > s.length()) return;
 
         if(length > 1 && s.charAt(start) == '0') return;
@@ -28,8 +29,11 @@ class Solution {
         path.add(num);
         dfs(s, res, path, start + length);
         path.removeLast();
-
-    }
+      }
   }
 
 }
+
+// xxx xxx xxx
+
+// 0.0 001
